@@ -3,7 +3,16 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "start http://localhost:5000 & npm run dev"
+    "start": "start http://localhost:5000 & npm run dev",
+    "backend": "node server.js",
+    "frontend": "npm run start --prefix ../client",
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\"",
+    "build": "cd ../client && npm run build",
+    "heroku-postbuild": "npm run build"
+  },
+  "author": "Mike Stanley",
+  "devDependencies": {
+    "concurrently": "^4.1.0"
   },
   "dependencies": {
     "express": "~4.16.1"
