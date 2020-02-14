@@ -1,3 +1,7 @@
+const path = require('path');
+
+module.exports = function (app) {
+
 // create a GET route
 app.get('/express_backend', (req, res) => {
     res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
@@ -20,5 +24,8 @@ app.delete('/api/books/:id', (req, res) => {
 
 // Send all other routes to React
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "./client/build/index.html"));
+    // res.sendFile(path.join(__dirname, "./client/build/index.html"));
+    console.log('success');
 });
+
+}
