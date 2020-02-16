@@ -1,31 +1,49 @@
 const path = require('path');
 
-module.exports = function (app) {
+const router = require('express').Router();
 
-// create a GET route
-app.get('/express_backend', (req, res) => {
-    res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
+const db = require('./models');
+
+// Query google books API
+router.post('/api/search', (req, res) => {
+    const query = req.body.search.replace(/\s+/g, '+');
+    fetch('https://www.googleapis.com/books/v1/volumes?q=' + query + '&key=' + process.env.googleAPI)
+        .then(result => {
+            console.log(result);
+        })
+        .catch(err => {
+            console.log(err);
+        });
 });
+
+
 
 // Return all saved books as JSON
-app.get('/api/books', (req, res) => {
-
+router.get('/api/books', (req, res) => {
+    db.Books.find({})
+        .then(books => {
+            res.json(books)
+        })
+        .catch(err => {
+            console.log(err);
+        })
 });
 
+
 // Save new book to db
-app.post('/api/books', (req, res) => {
+router.post('/api/books', (req, res) => {
 
 });
 
 // Delete book from db based on _id
-app.delete('/api/books/:id', (req, res) => {
+router.delete('/api/books/:id', (req, res) => {
 
 });
 
 // Send all other routes to React
-app.get("*", (req, res) => {
+router.get("*", (req, res) => {
     // res.sendFile(path.join(__dirname, "./client/build/index.html"));
     console.log('success');
 });
 
-}
+module.exports = router;
