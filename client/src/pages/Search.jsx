@@ -36,12 +36,8 @@ class Search extends Component {
     }
 
     saveBook = book => {
-        const options = {
-            method: 'post',
-            url: '/api/save/',
-            data: book
-        }
-        axios(options)
+        console.log(book);
+        axios.post('/api/save/', book)
             .then(res => {
                 console.log(res);
             })
@@ -70,18 +66,18 @@ class Search extends Component {
                     </InputGroup>
                     <Container fluid>
                         <Row>
-                            {this.state.books.map((book, i) => 
-                                
-                                    <Col xs='12' sm='6' md='4' lg='3' xl='2'>
-                                        <Book
-                                            title={book.volumeInfo.title}
-                                            authors={book.volumeInfo.authors}
-                                            image={book.volumeInfo.imageLinks.thumbnail}
-                                            description={book.volumeInfo.description}
-                                            link={book.volumeInfo.link}
-                                            key={'book_' + i}
-                                        />
-                                    </Col>  
+                            {this.state.books.map((book, i) =>
+                                <Col xs='12' sm='6' md='4' lg='3' xl='2'>
+                                    <Book
+                                        title={book.volumeInfo.title}
+                                        authors={book.volumeInfo.authors}
+                                        image={book.volumeInfo.imageLinks.thumbnail}
+                                        description={book.volumeInfo.description}
+                                        link={book.volumeInfo.link}
+                                        saveBook={this.saveBook}
+                                        key={'book_' + i}
+                                    />
+                                </Col>
                             )}
                         </Row>
                     </Container>

@@ -18,11 +18,11 @@ module.exports = function (app) {
             });
     });
 
-    // Return all saved books as JSON
+    // Return all saved books
     app.get('/api/books', (req, res) => {
-        db.Books.find({})
+        db.Book.find({})
             .then(books => {
-                res.json(books)
+                res.json(books);
             })
             .catch(err => {
                 console.log(err);
@@ -31,14 +31,18 @@ module.exports = function (app) {
 
     // Save new book to db
     app.post('/api/save/', (req, res) => {
-        console.log(req.body);
-        // db.Books.create(req.body)
-
+        db.Book.create(req.body)
+            .then(data => {
+                res.json(data);
+            })
+            .catch(err => {
+                console.log(err);
+            });
     });
 
     // Delete book from db 
     app.delete('/api/delete/:id', (req, res) => {
-        db.Books.remove(req.params.id)
+        db.Book.remove(req.params.id)
             .catch(err => {
                 console.log(err);
             });

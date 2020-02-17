@@ -6,12 +6,12 @@ const mongoose = require('mongoose');
 
 const app = express();
 
-require('./routes')(app);
-
 const port = process.env.PORT || 3001;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+require('./routes')(app);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
