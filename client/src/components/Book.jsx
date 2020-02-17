@@ -9,10 +9,9 @@ import {
     Button
 } from 'reactstrap';
 
-
 const Book = props => {
     return (
-        <Card className='bookCard' onClick={() => props.onImgClick(props.id)}>
+        <Card className='bookCard'>
             <CardImg className='bookImage' src={props.image}></CardImg>
             <CardBody>
                 <CardTitle>{props.title}</CardTitle>
@@ -25,7 +24,8 @@ const Book = props => {
                         author: props.author,
                         image: props.image,
                         description: props.description,
-                        link: props.link
+                        link: props.link,
+                        save: true
                     })}
                     color='success'>Save</Button>
             </CardBody>

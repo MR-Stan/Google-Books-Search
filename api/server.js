@@ -8,7 +8,7 @@ const app = express();
 
 require('./routes')(app);
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3001;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

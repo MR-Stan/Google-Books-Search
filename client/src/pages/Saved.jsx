@@ -1,20 +1,32 @@
+import axios from 'axios';
 import React, { Component } from 'react';
 import {
     Card,
     CardBody,
-    CardText
+    CardTitle,
+    Container,
+    InputGroup,
+    Input,
+    InputGroupAddon,
+    Button,
+    Row,
+    Col
 } from 'reactstrap';
 import Book from '../components/Book';
 
-const Saved = _ => {
-    return (
-        <Card>
-            <CardBody>
-                <CardText>Saved Page</CardText>
-                <Book />
-            </CardBody>
-        </Card>
-    )
+class Saved extends Component {
+
+    state = {
+        savedBooks: []
+    }
+
+    // componentDidMount() {
+        
+    // }
+
+    // return (
+        
+    // )
 }
 
 export default Saved;

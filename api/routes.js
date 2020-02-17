@@ -1,15 +1,17 @@
 const path = require('path');
 
+const axios = require('axios');
+
 const db = require('./models');
 
 module.exports = function (app) {
 
     // Query google books API
-    app.post('/api/search', (req, res) => {
-        const query = req.body.search.replace(/\s+/g, '+');
-        fetch('https://www.googleapis.com/books/v1/volumes?q=' + query + '&key=' + process.env.googleAPI)
-            .then(result => {
-                console.log(result);
+    app.get('/api/search/:search', (req, res) => {
+        const query = req.params.search.replace(/\s+/g, '+');
+        axios.get('https://www.googleapis.com/books/v1/volumes?q=' + query + '&key=' + process.env.googleAPI)
+            .then(response => {
+                return res.json({ items: response.data.items });
             })
             .catch(err => {
                 console.log(err);
@@ -27,15 +29,19 @@ module.exports = function (app) {
             })
     });
 
-
     // Save new book to db
-    app.post('/api/save/:id', (req, res) => {
-        // set saved to true
+    app.post('/api/save/', (req, res) => {
+        console.log(req.body);
+        // db.Books.create(req.body)
+
     });
 
     // Delete book from db 
     app.delete('/api/delete/:id', (req, res) => {
-
+        db.Books.remove(req.params.id)
+            .catch(err => {
+                console.log(err);
+            });
     });
 
     // Send all other routes to React
