@@ -1,42 +1,30 @@
 import React, { Component } from 'react';
-
-import Search from './pages/Search';
-import Saved from './pages/Saved';
-
-import Nav from './components/Nav';
-
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  NavLink as RRNavLink
-} from "react-router-dom";
+} from 'react-router-dom';
+
+import Search from './pages/Search';
+import Saved from './pages/Saved';
+import Nav from './components/Nav';
 
 class App extends Component {
-  state = {
-    query: '',
-    bookResults: [],
-    savedBooks: []
-  }
-
   render() {
     return (
       <>
-        <header>
-          <Nav />
-        </header>
-        <main>
-          <Router>
-            <Switch>
-              <Route path='/search'>
-                <Search />
-              </Route>
-              <Route path='/saved'>
-                <Saved />
-              </Route>
-            </Switch>
-          </Router>
-        </main>
+        <Nav />
+        <h1>Google Books Search</h1>
+        <Router>
+          <Switch>
+            <Route exact path='/'>
+              <Search />
+            </Route>
+            <Route exact path='/saved'>
+              <Saved />
+            </Route>
+          </Switch>
+        </Router>
       </>
     )
   }

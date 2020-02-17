@@ -18,7 +18,16 @@ const Book = props => {
                 <CardTitle>{props.title}</CardTitle>
                 <CardSubtitle>{props.authors}</CardSubtitle>
                 <CardText>{props.description}</CardText>
-                <Button>{props.link}</Button>
+                <a href={props.link}><Button color='primary'>Read Here</Button></a>
+                <Button
+                    onClick={_ => props.saveBook({
+                        title: props.title,
+                        author: props.author,
+                        image: props.image,
+                        description: props.description,
+                        link: props.link
+                    })}
+                    color='success'>Save</Button>
             </CardBody>
         </Card>
     )

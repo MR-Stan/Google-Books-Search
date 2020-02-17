@@ -1,11 +1,5 @@
 import React from 'react';
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    NavLink as RRNavLink
-} from "react-router-dom";
-import {
     Navbar,
     NavbarBrand,
     Nav,
@@ -13,22 +7,19 @@ import {
     NavLink
 } from 'reactstrap';
 
-
 const NavComponent = _ => {
     return (
-        <Router>
-            <Navbar>
-                <NavbarBrand href='https://books.google.com/'>Google Books</NavbarBrand>
-                <Nav navbar>
-                    <NavItem>
-                        <NavLink tag={RRNavLink} exact to='/search' activeClassName='active'>Search</NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink tag={RRNavLink} exact to='/saved' activeClassName='active'>Saved</NavLink>
-                    </NavItem>
-                </Nav>
-            </Navbar>
-        </Router>
+        <Navbar>
+            <NavbarBrand href='https://books.google.com/'>Google Books</NavbarBrand>
+            <Nav>
+                <NavItem>
+                    <NavLink href='/'>Search</NavLink>
+                </NavItem>
+                <NavItem>
+                    <NavLink href='/saved'>Saved</NavLink>
+                </NavItem>
+            </Nav>
+        </Navbar>
     )
 }
 
