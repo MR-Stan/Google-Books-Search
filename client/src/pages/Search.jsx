@@ -21,21 +21,20 @@ class Search extends Component {
     }
 
     handleInputChange = event => {
-        const { name, value } = event.target
+        const { name, value } = event.target;
         this.setState({
             [name]: value
         });
     }
 
-    searchBooks = e => {
-        e.preventDefault();
+    searchBooks = event => {
+        event.preventDefault();
         axios.get('/api/search/' + this.state.search)
-            .then(res => this.setState({ books: res.data.items }))
-            .then(this.setState({ search: '' }));
+            .then(res => this.setState({ books: res.data.items ,  search: '' }));
     }
 
     saveBook = book => {
-        console.log(book);
+        book.saved = true;
         axios.post('/api/save/', book)
             .then(res => {
                 console.log(res);

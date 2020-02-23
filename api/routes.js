@@ -22,6 +22,7 @@ module.exports = function (app) {
     app.get('/api/books', (req, res) => {
         db.Book.find({})
             .then(books => {
+                console.log(books);
                 res.json(books);
             })
             .catch(err => {
@@ -33,6 +34,7 @@ module.exports = function (app) {
     app.post('/api/save/', (req, res) => {
         db.Book.create(req.body)
             .then(data => {
+                console.log('saved');
                 res.json(data);
             })
             .catch(err => {
