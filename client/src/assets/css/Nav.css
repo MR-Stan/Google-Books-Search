@@ -1,0 +1,19 @@
+.nav-text {
+    font-weight: bold;
+}
+
+.nav-text:hover {
+    font-size: 1.1em;
+    text-shadow: 2px 2px darkblue;
+}
+
+.navbrand-text {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.navbrand-text:hover {
+    font-size: 1.3em;
+        text-shadow: 2px 2px darkblue;
+}
+

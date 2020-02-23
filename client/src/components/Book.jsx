@@ -8,13 +8,14 @@ import {
     CardText,
     Button
 } from 'reactstrap';
+import '../assets/css/Book.css'
 
 const Book = props => {
     return (
-        <Card className='bookCard'>
-            <CardImg className='bookImage' src={props.image}></CardImg>
+        <Card className='text-center bg-light book-card'>
+            <CardImg className='book-image' src={props.image}></CardImg>
             <CardBody>
-                <CardTitle>{props.title}</CardTitle>
+                <CardTitle className='title'>{props.title}</CardTitle>
                 <CardSubtitle>{props.authors}</CardSubtitle>
                 <CardText>{props.description}</CardText>
                 <a href={props.link}><Button color='primary'>Read Here</Button></a>

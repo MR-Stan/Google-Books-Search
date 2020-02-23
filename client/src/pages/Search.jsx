@@ -3,8 +3,6 @@ import React, { Component } from 'react';
 import {
     Card,
     CardBody,
-    CardTitle,
-    Container,
     InputGroup,
     Input,
     InputGroupAddon,
@@ -13,6 +11,7 @@ import {
     Col
 } from 'reactstrap';
 import Book from '../components/Book';
+import '../assets/css/Page.css'
 
 class Search extends Component {
 
@@ -49,38 +48,41 @@ class Search extends Component {
     render() {
         return (
             <Card>
-                <CardBody>
-                    <CardTitle>Search Page</CardTitle>
-                    <InputGroup>
-                        <Input
-                            name='search'
-                            onChange={this.handleInputChange}
-                            placeholder="Book Name" />
-                        <InputGroupAddon addonType="append">
-                            <Button
-                                onClick={this.searchBooks}
-                                color='primary'>
-                                Search
+                <CardBody className='page-card'>
+                    <Row>
+                        <Col></Col>
+                        <Col xs='12' md='6'xl='4'>
+                            <InputGroup className='searchBar'>
+                                <Input
+                                    name='search'
+                                    onChange={this.handleInputChange}
+                                    placeholder="Find a book" />
+                                <InputGroupAddon addonType="append">
+                                    <Button
+                                        onClick={this.searchBooks}
+                                        color='primary'>
+                                        Search
                                 </Button>
-                        </InputGroupAddon>
-                    </InputGroup>
-                    <Container fluid>
-                        <Row>
-                            {this.state.books.map((book, i) =>
-                                <Col xs='12' sm='6' md='4' lg='3' xl='2'>
-                                    <Book
-                                        title={book.volumeInfo.title}
-                                        authors={book.volumeInfo.authors}
-                                        image={book.volumeInfo.imageLinks.thumbnail}
-                                        description={book.volumeInfo.description}
-                                        link={book.volumeInfo.link}
-                                        saveBook={this.saveBook}
-                                        key={'book_' + i}
-                                    />
-                                </Col>
-                            )}
-                        </Row>
-                    </Container>
+                                </InputGroupAddon>
+                            </InputGroup>
+                        </Col>
+                        <Col></Col>
+                    </Row>
+                    <Row>
+                        {this.state.books.map((book, i) =>
+                            <Col xs='12' sm='6' md='4' xl='3'>
+                                <Book
+                                    title={book.volumeInfo.title}
+                                    authors={book.volumeInfo.authors}
+                                    image={book.volumeInfo.imageLinks.thumbnail}
+                                    description={book.volumeInfo.description}
+                                    link={book.volumeInfo.link}
+                                    saveBook={this.saveBook}
+                                    key={'book_' + i}
+                                />
+                            </Col>
+                        )}
+                    </Row>
                 </CardBody>
             </Card>
         )

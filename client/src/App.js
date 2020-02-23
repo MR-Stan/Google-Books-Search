@@ -14,7 +14,6 @@ class App extends Component {
     return (
       <>
         <Nav />
-        <h1>Google Books Search</h1>
         <Router>
           <Switch>
             <Route exact path='/'>
