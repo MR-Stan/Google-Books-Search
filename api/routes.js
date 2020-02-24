@@ -18,7 +18,7 @@ module.exports = function (app) {
 
     // Return all saved books
     app.get('/api/books', (req, res) => {
-        db.Book.find({saved: true})
+        db.Book.find({ saved: true })
             .then(books => {
                 res.json(books);
             })
@@ -40,8 +40,7 @@ module.exports = function (app) {
 
     // Delete book from db 
     app.delete('/api/delete/:id', (req, res) => {
-        db.Book.remove(req.params.id)
-            .then(console.log('deleted'))
+        db.Book.findByIdAndDelete(req.params.id)
             .catch(err => {
                 console.log(err);
             });

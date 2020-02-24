@@ -10,7 +10,7 @@ import {
 } from 'reactstrap';
 import '../assets/css/Book.css'
 
-const Book = props => {
+const SaveBook = props => {
     return (
         <Card className='text-center bg-light book-card'>
             <CardImg className='book-image' src={props.image}></CardImg>
@@ -20,18 +20,18 @@ const Book = props => {
                 <CardText>{props.description}</CardText>
                 <a href={props.link}><Button color='primary'>Read</Button></a>
                 <Button
-                    onClick={_ => props.saveBook({
+                    onClick={_ => props.removeSave({
                         title: props.title,
                         author: props.author,
                         image: props.image,
                         description: props.description,
                         link: props.link,
-                        save: true
+                        save: false
                     })}
-                    color='success'>Save</Button>
+                    color='danger'>Remove</Button>
             </CardBody>
         </Card>
     )
 }
 
-export default Book;
+export default SaveBook;

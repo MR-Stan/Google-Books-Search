@@ -3,16 +3,10 @@ import React, { Component } from 'react';
 import {
     Card,
     CardBody,
-    // CardTitle,
-    // Container,
-    // InputGroup,
-    // Input,
-    // InputGroupAddon,
-    // Button,
     Row,
     Col
 } from 'reactstrap';
-import Book from '../components/Book';
+import SaveBook from '../components/SaveBook';
 
 class Saved extends Component {
 
@@ -31,14 +25,11 @@ class Saved extends Component {
     }
 
     removeSave = id => {
-        axios.get('/api/delete/' + id)
-            .then(res => {
-                console.log('deleted')
-                this.getSaved();
-            })
+        axios.delete('/api/delete/' + id)
         .catch (err => {
             console.log(err);
         })
+        this.getSaved();
     }
 
     componentDidMount() {
@@ -52,7 +43,7 @@ class Saved extends Component {
                     <Row>
                         {this.state.savedBooks.map((book, i) =>
                             <Col xs='12' sm='6' md='4' xl='3'>
-                                <Book
+                                <SaveBook
                                     title={book.title}
                                     authors={book.authors}
                                     image={book.image}
