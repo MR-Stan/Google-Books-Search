@@ -50,7 +50,7 @@ class Saved extends Component {
                                     description={book.description}
                                     link={book.link}
                                     removeSave={_=> this.removeSave(book._id)}
-                                    key={book._id}
+                                    key={book.id}
                                 />
                             </Col>
                         )}

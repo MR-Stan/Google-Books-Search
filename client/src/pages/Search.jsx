@@ -34,15 +34,15 @@ class Search extends Component {
     }
 
     saveBook = book => {
-        book.saved = true;
-        axios.post('/api/save/', book)
-            .then(res => {
-                console.log(res);
-            })
-            .catch(err => {
-                console.log(err);
-            });
-    }
+            book.saved = true;
+            axios.post('/api/save/', book)
+                .then(res => {
+                
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+        }
 
     render() {
         return (
