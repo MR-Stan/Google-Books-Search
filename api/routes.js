@@ -1,5 +1,3 @@
-const path = require('path');
-
 const axios = require('axios');
 
 const db = require('./models');
@@ -20,9 +18,8 @@ module.exports = function (app) {
 
     // Return all saved books
     app.get('/api/books', (req, res) => {
-        db.Book.find({})
+        db.Book.find({saved: true})
             .then(books => {
-                console.log(books);
                 res.json(books);
             })
             .catch(err => {
@@ -34,7 +31,6 @@ module.exports = function (app) {
     app.post('/api/save/', (req, res) => {
         db.Book.create(req.body)
             .then(data => {
-                console.log('saved');
                 res.json(data);
             })
             .catch(err => {
@@ -45,6 +41,7 @@ module.exports = function (app) {
     // Delete book from db 
     app.delete('/api/delete/:id', (req, res) => {
         db.Book.remove(req.params.id)
+            .then(console.log('deleted'))
             .catch(err => {
                 console.log(err);
             });

@@ -70,10 +70,13 @@ class Search extends Component {
                     <Row>
                         {this.state.books.map((book, i) =>
                             <Col xs='12' sm='6' md='4' xl='3'>
-                                <Book
+                                <Book 
                                     title={book.volumeInfo.title}
                                     authors={book.volumeInfo.authors}
-                                    image={book.volumeInfo.imageLinks.thumbnail}
+                                    image={
+                                        book.volumeInfo.imageLinks
+                                            ? book.volumeInfo.imageLinks.thumbnail
+                                            : 'https://images.pexels.com/photos/159866/books-book-pages-read-literature-159866.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'}
                                     description={book.volumeInfo.description}
                                     link={book.volumeInfo.link}
                                     saveBook={this.saveBook}

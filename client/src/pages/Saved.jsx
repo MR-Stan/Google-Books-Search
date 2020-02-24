@@ -23,17 +23,26 @@ class Saved extends Component {
     getSaved = _ => {
         axios.get('/api/books')
             .then(res => {
-                console.log(res.data.items);
-                this.setState({ savedBooks: res.data.items })
+                this.setState({ savedBooks: res.data })
             })
             .catch(err => {
                 console.log(err);
         })
     }
 
+    removeSave = id => {
+        axios.get('/api/delete/' + id)
+            .then(res => {
+                console.log('deleted')
+                this.getSaved();
+            })
+        .catch (err => {
+            console.log(err);
+        })
+    }
+
     componentDidMount() {
-        console.log(this.state.savedBooks)
-        // this.getSaved();   
+        this.getSaved();   
     }
 
     render() {
@@ -44,13 +53,13 @@ class Saved extends Component {
                         {this.state.savedBooks.map((book, i) =>
                             <Col xs='12' sm='6' md='4' xl='3'>
                                 <Book
-                                    title={book.volumeInfo.title}
-                                    authors={book.volumeInfo.authors}
-                                    image={book.volumeInfo.imageLinks.thumbnail}
-                                    description={book.volumeInfo.description}
-                                    link={book.volumeInfo.link}
-                                    saveBook={this.saveBook}
-                                    key={'book_' + i}
+                                    title={book.title}
+                                    authors={book.authors}
+                                    image={book.image}
+                                    description={book.description}
+                                    link={book.link}
+                                    removeSave={_=> this.removeSave(book._id)}
+                                    key={book._id}
                                 />
                             </Col>
                         )}
