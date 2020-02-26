@@ -4,7 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "cd ./api && node server.js",
+    "start:dev": "concurrently \"node server.js\" \"npm run client\"",
+    "client": "cd ./client && npm run start",
+    "seed": "node scripts/seedsDB.js",
+    "install": "cd ./client && npm install",
+    "build": "cd ./client && npm run build",
+    "heroku-postbuild": "cd ./client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },
   "repository": {
     "type": "git",
