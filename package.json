@@ -22,5 +22,9 @@
   "bugs": {
     "url": "https://github.com/MR-Stan/Google-Books-Search/issues"
   },
-  "homepage": "https://github.com/MR-Stan/Google-Books-Search#readme"
+  "homepage": "https://github.com/MR-Stan/Google-Books-Search#readme",
+  "dependencies": {
+    "concurrently": "^5.1.0",
+    "if-env": "^1.0.4"
+  }
 }
